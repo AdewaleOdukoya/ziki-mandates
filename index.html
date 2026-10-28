@@ -3,181 +3,102 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ziki · Decisions &amp; Mandates</title>
+<title>Ziki · Decisions</title>
 <link rel="icon" href="https://ziki.dev/icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600&family=Geist+Mono:wght@500;600&display=swap">
 <script>try{var t=localStorage.getItem("ziki-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <style>
 :root{
-  --bg:#f5f7fc; --card:#fff; --ink:#111f3d; --ink-2:#304a78; --muted:#6b7893; --line:#dbe7fd; --line-2:#e8eef9;
-  --blue:#3978f6; --blue-strong:#2a63d8; --blue-50:#edf3fe; --blue-100:#dbe7fd; --sky:#8fc9ff; --ocean:#0b1733;
+  --bg:#f5f7fc; --card:#fff; --ink:#111f3d; --muted:#6b7893; --line:#dbe7fd; --line-2:#e8eef9;
+  --blue:#3978f6; --blue-strong:#2a63d8; --blue-50:#edf3fe; --sky:#8fc9ff; --ocean:#0b1733;
   --ok:#0f8a5f; --ok-bg:#e3f6ee; --ask:#b26a00; --ask-bg:#fff3dc; --no:#b4233f; --no-bg:#fbe6ea; --violet:#7C3AED; --violet-bg:#efe7fe;
-  --code:#f0f4fc; --shadow:0 1px 2px rgba(17,31,61,.06), 0 8px 24px rgba(17,31,61,.06);
-  --head:"Manrope","Manrope Fallback",system-ui,sans-serif; --sans:"Inter","Inter Fallback",system-ui,sans-serif; --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --head:"Manrope",system-ui,sans-serif; --sans:"Inter",system-ui,sans-serif; --mono:"Geist Mono",ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#070f22; --card:#0e1a33; --ink:#e8eef9; --ink-2:#a9b8d3; --muted:#8193b3; --line:#293f69; --line-2:#1b2a47;
-  --blue:#5991ff; --blue-strong:#679bf8; --blue-50:#111f3d; --blue-100:#172f5e; --ocean:#0b1733;
-  --ok:#6ee7a8; --ok-bg:#0f2e26; --ask:#f5b84a; --ask-bg:#33260f; --no:#ff8fa3; --no-bg:#3a1622; --violet:#b69cff; --violet-bg:#261b45;
-  --code:#0b1733; --shadow:0 1px 2px rgba(0,0,0,.3); color-scheme:dark}}
+  --bg:#070f22; --card:#0e1a33; --ink:#e8eef9; --muted:#8193b3; --line:#293f69; --line-2:#1b2a47;
+  --blue:#5991ff; --blue-strong:#679bf8; --blue-50:#111f3d;
+  --ok:#6ee7a8; --ok-bg:#0f2e26; --ask:#f5b84a; --ask-bg:#33260f; --no:#ff8fa3; --no-bg:#3a1622; --violet:#b69cff; --violet-bg:#261b45; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#070f22; --card:#0e1a33; --ink:#e8eef9; --ink-2:#a9b8d3; --muted:#8193b3; --line:#293f69; --line-2:#1b2a47;
-  --blue:#5991ff; --blue-strong:#679bf8; --blue-50:#111f3d; --blue-100:#172f5e; --ocean:#0b1733;
-  --ok:#6ee7a8; --ok-bg:#0f2e26; --ask:#f5b84a; --ask-bg:#33260f; --no:#ff8fa3; --no-bg:#3a1622; --violet:#b69cff; --violet-bg:#261b45;
-  --code:#0b1733; --shadow:0 1px 2px rgba(0,0,0,.3); color-scheme:dark}
+  --bg:#070f22; --card:#0e1a33; --ink:#e8eef9; --muted:#8193b3; --line:#293f69; --line-2:#1b2a47;
+  --blue:#5991ff; --blue-strong:#679bf8; --blue-50:#111f3d;
+  --ok:#6ee7a8; --ok-bg:#0f2e26; --ask:#f5b84a; --ask-bg:#33260f; --no:#ff8fa3; --no-bg:#3a1622; --violet:#b69cff; --violet-bg:#261b45; color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0; background:var(--bg); color:var(--ink); font:14.5px/1.55 var(--sans); -webkit-font-smoothing:antialiased}
-button,select,input{font:inherit; color:inherit}
-button{cursor:pointer}
+body{margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 var(--sans); -webkit-font-smoothing:antialiased}
+button{font:inherit; color:inherit; cursor:pointer}
 :focus-visible{outline:2px solid var(--blue); outline-offset:2px; border-radius:8px}
-code,.mono{font-family:var(--mono)}
-code{font-size:12.5px; background:var(--code); padding:1px 6px; border-radius:6px}
 h1,h2,h3{font-family:var(--head); letter-spacing:-.02em; margin:0}
 
-/* top bar */
-.top{position:sticky; top:0; z-index:20; background:color-mix(in srgb,var(--card) 92%,transparent); backdrop-filter:blur(12px); border-bottom:1px solid var(--line)}
-.top .in{max-width:1320px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; gap:24px}
-.brand{display:flex; align-items:center; gap:10px; font:800 17px var(--head); text-decoration:none; color:var(--ink)}
+.top{background:var(--card); border-bottom:1px solid var(--line)}
+.top .in{max-width:1080px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:28px}
+.brand{display:flex; align-items:center; gap:9px; font:800 18px var(--head); text-decoration:none; color:var(--ink)}
 .brand svg{width:30px; height:25px}
-.brand small{font:500 12px var(--sans); color:var(--muted)}
 .nav{display:flex; gap:4px}
-.nav a{padding:7px 12px; border-radius:999px; text-decoration:none; color:var(--ink-2); font-weight:600; font-size:14px; display:flex; gap:7px; align-items:center}
-.nav a:hover{background:var(--blue-50)}
+.nav a{padding:7px 12px; border-radius:999px; text-decoration:none; color:var(--muted); font-weight:600; font-size:14px; display:flex; gap:7px; align-items:center}
 .nav a.on{background:var(--blue-50); color:var(--blue-strong)}
 .count{background:var(--blue); color:#fff; font:600 11px var(--mono); min-width:19px; height:19px; padding:0 5px; border-radius:999px; display:inline-grid; place-items:center}
-.count.zero{background:var(--line); color:var(--muted)}
-.right{margin-left:auto; display:flex; align-items:center; gap:10px}
-.iconbtn{width:36px; height:36px; border-radius:999px; border:1px solid var(--line); background:var(--card); display:grid; place-items:center}
-.iconbtn svg{width:17px; height:17px}
-.me{width:34px; height:34px; border-radius:999px; background:var(--ocean); color:var(--sky); display:grid; place-items:center; font:700 13px var(--head); border:2px solid var(--blue-100)}
-.concept{font:600 10.5px var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--violet); background:var(--violet-bg); padding:5px 9px; border-radius:999px}
-@media (max-width:860px){.nav{display:none}.brand small{display:none}}
+.count[hidden]{display:none}
+.right{margin-left:auto; display:flex; gap:10px; align-items:center}
+.iconbtn{width:34px; height:34px; border-radius:999px; border:1px solid var(--line); background:var(--card); display:grid; place-items:center}
+.iconbtn svg{width:16px; height:16px}
+.me{width:34px; height:34px; border-radius:999px; background:var(--ocean); color:var(--sky); display:grid; place-items:center; font:700 13px var(--head)}
+@media (max-width:640px){.nav a:not(.on){display:none}}
 
-/* page */
-.wrap{max-width:1320px; margin:0 auto; padding:26px 20px 80px}
-.crumbs{font-size:13px; color:var(--muted)}
-.crumbs a{color:inherit}
-.ph{display:flex; justify-content:space-between; align-items:end; gap:16px; flex-wrap:wrap; margin:8px 0 22px}
-.ph h1{font-size:28px; font-weight:800}
-.ph p{margin:6px 0 0; color:var(--muted); max-width:640px}
-.stats{display:flex; gap:10px; flex-wrap:wrap}
-.stat{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:10px 14px; min-width:120px}
-.stat b{display:block; font:800 20px var(--head); font-variant-numeric:tabular-nums}
-.stat span{font-size:12px; color:var(--muted)}
-.grid{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:22px; align-items:start}
-@media (max-width:1040px){.grid{grid-template-columns:1fr}}
-.sec{display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 12px}
-.sec h2{font-size:17px; font-weight:800}
-.sec .hint{font-size:12.5px; color:var(--muted)}
-.btn{border:1px solid var(--line); background:var(--card); border-radius:999px; padding:7px 14px; font-weight:600; font-size:13.5px; transition:background .15s, border-color .15s}
+.wrap{max-width:1080px; margin:0 auto; padding:36px 20px 80px}
+.ph h1{font-size:30px; font-weight:800}
+.ph p{margin:6px 0 28px; color:var(--muted)}
+.grid{display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:24px; align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+.label{font:600 12px var(--mono); letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin:0 0 12px}
+
+.card{background:var(--card); border:1px solid var(--line); border-radius:20px; padding:20px}
+.queue{display:grid; gap:14px}
+.who{display:flex; align-items:center; gap:10px; font-size:14px; color:var(--muted)}
+.who b{color:var(--ink); font-weight:600}
+.av{width:28px; height:28px; border-radius:8px; display:grid; place-items:center; font:800 12px var(--head); color:#fff; flex:none}
+.av.scout{background:var(--blue)} .av.lens{background:var(--violet)}
+.timer{margin-left:auto; font:600 12px var(--mono); color:var(--ask); background:var(--ask-bg); padding:5px 9px; border-radius:999px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.card h3{font-size:19px; font-weight:800; line-height:1.3; margin:14px 0 6px}
+.meta{font-size:13.5px; color:var(--muted); margin:0 0 16px}
+.sev{font:600 11px var(--mono); padding:2px 7px; border-radius:6px; border:1px solid currentColor; margin-right:6px}
+.sev.high{color:var(--no)} .sev.low{color:var(--ok)}
+.opts{display:flex; gap:8px; flex-wrap:wrap}
+.btn{border:1px solid var(--line); background:var(--card); border-radius:999px; padding:9px 16px; font-weight:600; font-size:14px; transition:border-color .15s, background .15s}
 .btn:hover{border-color:var(--blue)}
 .btn.primary{background:var(--blue); border-color:var(--blue); color:#fff}
 .btn.primary:hover{background:var(--blue-strong)}
+.btn.sm{padding:6px 12px; font-size:13px}
 .btn.danger{color:var(--no)}
-.btn.sm{padding:5px 11px; font-size:12.5px}
-.chip{font:600 11px/1 var(--mono); padding:5px 8px; border-radius:999px; letter-spacing:.02em; white-space:nowrap; display:inline-flex; align-items:center; gap:5px}
-.c-allow{background:var(--ok-bg); color:var(--ok)} .c-limit{background:var(--blue-50); color:var(--blue-strong)}
-.c-ask{background:var(--ask-bg); color:var(--ask)} .c-never{background:var(--no-bg); color:var(--no)}
-.c-dec{background:var(--violet-bg); color:var(--violet)}
-.sev{font:600 11px var(--mono); padding:3px 7px; border-radius:6px; border:1px solid currentColor}
-.sev.high{color:var(--no)} .sev.low{color:var(--ok)} .sev.medium{color:var(--ask)}
+.done{display:flex; align-items:center; gap:10px; padding:14px 20px; font-size:14px}
+.done .undo{margin-left:auto; background:none; border:0; color:var(--blue-strong); font-weight:600}
+.tick{width:22px; height:22px; border-radius:999px; display:grid; place-items:center; font-size:12px; font-weight:700; background:var(--ok-bg); color:var(--ok); flex:none}
+.tick.n{background:var(--line-2); color:var(--muted)}
+.empty{text-align:center; color:var(--muted); padding:28px}
+.empty b{display:block; color:var(--ink); font:800 17px var(--head)}
 
-/* decision cards */
-.queue{display:grid; gap:14px}
-.dc{background:var(--card); border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow); overflow:hidden; transition:opacity .3s}
-.dc .hd{display:flex; align-items:center; gap:10px; padding:14px 18px; border-bottom:1px solid var(--line-2); flex-wrap:wrap}
-.av{width:30px; height:30px; border-radius:9px; display:grid; place-items:center; font:800 13px var(--head); color:#fff; flex:none}
-.av.scout{background:var(--blue)} .av.lens{background:var(--violet)}
-.dc .who{font-weight:600} .dc .who span{color:var(--muted); font-weight:400}
-.timer{margin-left:auto; font:600 12px var(--mono); color:var(--ask); background:var(--ask-bg); padding:5px 9px; border-radius:999px; font-variant-numeric:tabular-nums}
-.timer.hot{color:var(--no); background:var(--no-bg)}
-.dc .bd{padding:16px 18px 18px}
-.dc h3{font-size:18px; font-weight:800; line-height:1.3}
-.facts{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:8px 0 10px; font-size:13px; color:var(--muted)}
-.why{font-size:13px; color:var(--ink-2); background:var(--bg); border-radius:10px; padding:8px 11px; margin:0 0 12px; display:flex; gap:8px; align-items:flex-start}
-.why svg{width:15px; height:15px; flex:none; margin-top:2px; color:var(--ask)}
-.plan{margin:0 0 14px; color:var(--ink-2)}
-.opts{display:grid; gap:8px}
-.opt{display:grid; grid-template-columns:26px 1fr auto; gap:11px; align-items:center; text-align:left; padding:11px 13px; border:1px solid var(--line); border-radius:13px; background:var(--card); transition:border-color .15s, background .15s, transform .15s}
-.opt:hover{border-color:var(--blue); background:var(--blue-50)}
-.opt:active{transform:scale(.99)}
-.opt .k{width:26px; height:26px; border-radius:8px; background:var(--bg); display:grid; place-items:center; font:600 12.5px var(--mono)}
-.opt.rec .k{background:var(--blue); color:#fff}
-.opt b{display:block; font-weight:600} .opt small{color:var(--muted); font-size:12.5px}
-.opt .tag{font:600 10.5px var(--mono); color:var(--blue-strong); text-transform:uppercase; letter-spacing:.05em}
-.dflt{font-size:12.5px; color:var(--muted); margin-top:10px}
-.done .bd{padding:12px 18px}
-.resolved{display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:13.5px}
-.resolved .mark{width:24px; height:24px; border-radius:999px; display:grid; place-items:center; font-weight:700; font-size:13px}
-.mark.y{background:var(--ok-bg); color:var(--ok)} .mark.n{background:var(--bg); color:var(--muted)}
-.undo{margin-left:auto; background:none; border:0; color:var(--blue-strong); font-weight:600; font-size:13px}
-.empty{background:var(--card); border:1px dashed var(--line); border-radius:20px; padding:30px; text-align:center; color:var(--muted)}
-.empty b{display:block; color:var(--ink); font:800 17px var(--head); margin-bottom:4px}
-.bulk{display:flex; gap:10px; align-items:center; flex-wrap:wrap; background:var(--blue-50); border:1px solid var(--blue-100); border-radius:14px; padding:10px 14px; margin-bottom:14px; font-size:13.5px}
-.bulk .btn{margin-left:auto}
-
-/* mandate */
-.side{display:grid; gap:18px; position:sticky; top:76px}
-@media (max-width:1040px){.side{position:static}}
-.panel{background:var(--card); border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow); overflow:hidden}
-.tabs{display:flex; gap:4px; padding:6px; border-bottom:1px solid var(--line-2); background:var(--bg)}
-.tab{flex:1; border:0; background:none; padding:8px 10px; border-radius:12px; font-weight:600; font-size:13.5px; color:var(--muted); display:flex; align-items:center; justify-content:center; gap:8px}
+.tabs{display:flex; gap:6px; margin-bottom:16px}
+.tab{border:1px solid var(--line); background:none; border-radius:999px; padding:6px 12px 6px 6px; font-weight:600; font-size:13.5px; display:flex; gap:8px; align-items:center; color:var(--muted)}
 .tab .av{width:22px; height:22px; font-size:11px; border-radius:7px}
-.tab.on{background:var(--card); color:var(--ink); box-shadow:var(--shadow)}
-.mhead{padding:16px 18px 0; display:flex; justify-content:space-between; align-items:flex-start; gap:10px; flex-wrap:wrap}
-.mhead h2{font-size:17px; font-weight:800}
-.mhead p{margin:3px 0 0; font-size:12.5px; color:var(--muted)}
-.view{display:flex; border:1px solid var(--line); border-radius:999px; padding:3px}
-.view button{border:0; background:none; padding:5px 11px; border-radius:999px; font-size:12.5px; font-weight:600; color:var(--muted)}
-.view button.on{background:var(--ocean); color:var(--sky)}
-.mbody{padding:14px 18px 18px}
-.clauses{list-style:none; margin:0; padding:0; display:grid; gap:8px}
-.cl{display:grid; grid-template-columns:64px 1fr auto; gap:10px; align-items:start; padding:10px 11px; border:1px solid var(--line-2); border-radius:12px; font-size:13.5px; background:var(--card)}
-.cl .chip{justify-content:center}
-.cl .src{display:block; font-size:11.5px; color:var(--muted); margin-top:3px}
-.cl .x{border:0; background:none; color:var(--muted); width:24px; height:24px; border-radius:7px; font-size:16px; line-height:1}
-.cl .x:hover{background:var(--no-bg); color:var(--no)}
-.cl .lock{color:var(--muted); width:24px; text-align:center; font-size:13px}
-.cl.fresh{animation:fresh 1.6s ease-out}
-@keyframes fresh{0%{background:var(--ok-bg); border-color:var(--ok); transform:translateY(-4px)} 100%{background:var(--card)}}
-.revoked .cl:not(.never){opacity:.45; text-decoration:line-through}
-.addrow{display:grid; grid-template-columns:auto 1fr 1fr auto; gap:6px; margin-top:10px}
-.addrow select{border:1px solid var(--line); background:var(--card); border-radius:10px; padding:7px 8px; font-size:13px; min-width:0}
-@media (max-width:520px){.addrow{grid-template-columns:1fr 1fr}}
-.settings{display:grid; gap:12px; margin-top:16px; padding-top:14px; border-top:1px solid var(--line-2)}
-.set{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; font-size:13.5px}
-.set > span{color:var(--ink-2); font-weight:600}
-.seg{display:flex; border:1px solid var(--line); border-radius:999px; padding:3px; gap:2px}
-.seg button{border:0; background:none; border-radius:999px; padding:4px 10px; font:600 12px var(--mono); color:var(--muted)}
-.seg button.on{background:var(--blue); color:#fff}
-.switch{width:38px; height:22px; border-radius:999px; background:var(--line); border:0; position:relative; transition:background .2s}
-.switch::after{content:""; position:absolute; top:3px; left:3px; width:16px; height:16px; border-radius:50%; background:#fff; transition:transform .2s}
-.switch[aria-checked="true"]{background:var(--blue)} .switch[aria-checked="true"]::after{transform:translateX(16px)}
-.locked{margin-top:14px; font-size:12.5px; color:var(--muted); background:var(--bg); border-radius:12px; padding:10px 12px}
-.locked b{color:var(--ink-2)}
-.mfoot{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-top:14px}
-.confirm{display:flex; gap:8px; align-items:center; flex-wrap:wrap; font-size:13px; background:var(--no-bg); color:var(--no); padding:8px 10px; border-radius:12px; width:100%}
-.status{font:600 11.5px var(--mono); display:inline-flex; align-items:center; gap:6px}
-.status i{width:8px; height:8px; border-radius:50%; background:var(--ok); box-shadow:0 0 0 3px var(--ok-bg)}
-.status.off i{background:var(--no); box-shadow:0 0 0 3px var(--no-bg)}
-pre.json{margin:0; font:12.5px/1.6 var(--mono); background:var(--code); border-radius:12px; padding:14px; overflow-x:auto; max-height:520px}
-.json .k{color:var(--blue-strong)} .json .s{color:var(--ok)} .json .n{color:var(--violet)}
-.agentnote{font-size:12.5px; color:var(--muted); margin:0 0 10px}
+.tab.on{background:var(--blue-50); border-color:var(--blue-50); color:var(--ink)}
+.rules{list-style:none; margin:0; padding:0; display:grid; gap:10px}
+.rules li{display:grid; grid-template-columns:58px 1fr; gap:10px; align-items:baseline; font-size:14px}
+.chip{font:600 10.5px var(--mono); padding:4px 0; border-radius:999px; text-align:center; letter-spacing:.03em}
+.c-allow{background:var(--ok-bg); color:var(--ok)} .c-ask{background:var(--ask-bg); color:var(--ask)} .c-never{background:var(--no-bg); color:var(--no)} .c-you{background:var(--violet-bg); color:var(--violet)}
+.rules li.fresh{animation:fresh 1.6s ease-out}
+@keyframes fresh{0%{background:var(--ok-bg); transform:translateY(-4px)} 100%{background:transparent}}
+.revoked .rules li:not(.never){opacity:.4; text-decoration:line-through}
+.pfoot{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-top:18px; padding-top:14px; border-top:1px solid var(--line-2); font-size:13px; color:var(--muted)}
 
-/* activity */
-.act{list-style:none; margin:0; padding:4px 0; display:grid}
-.act li{display:grid; grid-template-columns:52px 1fr; gap:10px; padding:10px 18px; border-top:1px solid var(--line-2); font-size:13.5px}
-.act li:first-child{border-top:0}
-.act time{font:500 12px var(--mono); color:var(--muted); padding-top:2px}
-.act .auth{display:flex; gap:6px; flex-wrap:wrap; margin-top:5px}
+.side{display:grid; gap:24px}
+.act{list-style:none; margin:0; padding:0; display:grid; gap:12px}
+.act li{display:grid; grid-template-columns:22px 1fr auto; gap:10px; align-items:center; font-size:14px}
+.act .av{width:22px; height:22px; font-size:10px; border-radius:6px}
+.act .chip{padding:4px 8px}
 .act li.fresh{animation:fresh 1.6s ease-out}
-.ahead{padding:14px 18px 6px; display:flex; justify-content:space-between; align-items:center}
-.ahead h2{font-size:15px; font-weight:800}
 
-.toast{position:fixed; left:50%; bottom:22px; transform:translate(-50%,140%); background:var(--ocean); color:#e8eef9; padding:11px 16px; border-radius:14px; font-size:13.5px; display:flex; gap:12px; align-items:center; box-shadow:0 12px 30px rgba(7,15,34,.3); transition:transform .3s ease; z-index:50; max-width:calc(100% - 32px)}
+.toast{position:fixed; left:50%; bottom:22px; transform:translate(-50%,200%); background:var(--ocean); color:#e8eef9; padding:11px 16px; border-radius:14px; font-size:14px; transition:transform .3s ease; z-index:50; max-width:calc(100% - 32px)}
 .toast.show{transform:translate(-50%,0)}
-.toast button{background:none; border:0; color:var(--sky); font-weight:600}
+.toast:empty{display:none}
 @media (prefers-reduced-motion: reduce){*{animation:none!important; transition:none!important}}
 </style>
 </head>
@@ -187,287 +108,148 @@ pre.json{margin:0; font:12.5px/1.6 var(--mono); background:var(--code); border-r
   <div class="in">
     <a class="brand" href="https://ziki.dev">
       <svg viewBox="0 0 48 40" aria-hidden="true"><path d="M12.4 2.5H43.1C46.2 2.5 47.8 6.1 45.7 8.4L33.7 21.2C32.4 22.6 30.6 23.3 28.7 23.3H23.1C20.2 23.3 17.9 21 17.9 18.1V16.8H5.3C2.2 16.8.7 13.1 2.8 10.9L8.6 4.7C9.6 3.3 10.9 2.5 12.4 2.5Z" fill="#3978F6"/><path d="M11.1 22.1H32.1C35.1 22.1 36.7 25.8 34.5 28L25.7 37.1C24.8 38 23.5 38.5 22.2 38.5H4.8C1.8 38.5.2 34.9 2.3 32.6L8.1 25C8.9 23.3 9.9 22.1 11.1 22.1Z" fill="#8FC9FF"/></svg>
-      Ziki <small>Issues</small>
+      Ziki
     </a>
     <nav class="nav">
       <a href="#">Issues</a>
-      <a href="#" class="on">Decisions <span class="count" id="navcount">3</span></a>
+      <a href="#" class="on">Decisions <span class="count" id="navcount">2</span></a>
       <a href="#">Agents</a>
-      <a href="#">Points</a>
     </nav>
     <div class="right">
-      <span class="concept" title="Concept for the Ziki Mandates proposal">Concept</span>
       <button class="iconbtn" id="theme" aria-label="Toggle dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
-      <span class="me" title="Adewale (owner)">AO</span>
+      <span class="me" title="Adewale">AO</span>
     </div>
   </div>
 </header>
 
 <main class="wrap">
-  <div class="crumbs">Workspace · <a href="#">issue-tracker</a></div>
   <div class="ph">
-    <div>
-      <h1>Decisions</h1>
-      <p>Your agents act on their own inside their mandates. Anything outside one waits here for you. Every answer is recorded on the issue, and you can turn any answer into a rule.</p>
-    </div>
-    <div class="stats">
-      <div class="stat"><b id="s-wait">3</b><span>waiting on you</span></div>
-      <div class="stat"><b id="s-auto">12</b><span>actions under mandate this week</span></div>
-      <div class="stat"><b id="s-cov">96%</b><span>agent writes with recorded consent</span></div>
-    </div>
+    <h1>Decisions</h1>
+    <p>Your agents ask here before doing anything you haven't allowed.</p>
   </div>
 
   <div class="grid">
-    <section aria-label="Decision queue">
-      <div class="sec"><h2>Waiting on you</h2><span class="hint">Sorted by what expires first</span></div>
-      <div id="bulk"></div>
+    <section>
+      <p class="label">Waiting on you</p>
       <div class="queue" id="queue"></div>
-
-      <div class="panel" style="margin-top:22px">
-        <div class="ahead"><h2>Recent agent activity</h2><span class="hint" style="font-size:12.5px;color:var(--muted)">What allowed each action</span></div>
-        <ul class="act" id="act"></ul>
-      </div>
     </section>
 
     <aside class="side">
-      <div class="panel">
-        <div class="tabs" id="tabs"></div>
-        <div id="mandate"></div>
+      <div>
+        <p class="label">What your agents can do</p>
+        <div class="card" id="rules"></div>
+      </div>
+      <div>
+        <p class="label">Recent activity</p>
+        <div class="card"><ul class="act" id="act"></ul></div>
       </div>
     </aside>
   </div>
 </main>
 
-<div class="toast" id="toast" role="status"><span id="toastmsg"></span><button id="toastundo">Undo</button></div>
+<div class="toast" id="toast" role="status"></div>
 
 <script>
 (() => {
   const $ = s => document.querySelector(s);
-  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const now = Date.now();
-  const hhmm = d => new Date(d).toLocaleTimeString([], {hour:"2-digit", minute:"2-digit", hour12:false});
 
   const S = {
-    agentTab: "scout",
-    view: "owner",
+    tab: "scout",
     agents: {
-      scout: { name:"Scout", level:"contributor", init:"S", expiry:"7d", quiet:true, revoked:false, confirming:false,
-        clauses:[
-          {id:"c1", eff:"allow", text:"Bid on and accept <b>low</b> and <b>medium</b> issues labelled <code>frontend</code> or <code>docs</code>", src:"Set by you · 21 Oct", rule:{allow:"bid", severity:["low","medium"], labels:["frontend","docs"]}},
-          {id:"c2", eff:"allow", text:"File issues and post reproduction comments", src:"Set by you · 21 Oct", rule:{allow:["file_issue","comment"]}},
-          {id:"c3", eff:"limit", text:"At most <b>1</b> active claim at a time", src:"Set by you · 21 Oct", rule:{limit:"active_claims", max:1}},
-          {id:"c4", eff:"ask", text:"<b>High</b> or <b>critical</b> issues, or changes touching <code>auth/</code>", src:"Set by you · 21 Oct", rule:{ask:"*", when:{severity:[">=high"], paths:["auth/**"]}}},
-          {id:"c5", eff:"never", text:"Scope changes and database migrations", src:"Can't be delegated", locked:true, rule:{never:["scope_change","migration"]}}
-        ]},
-      lens: { name:"Lens", level:"reviewer", init:"L", expiry:"24h", quiet:false, revoked:false, confirming:false,
-        clauses:[
-          {id:"l1", eff:"allow", text:"Accept review offers on <b>low</b> issues labelled <code>frontend</code>", src:"Set by you · 24 Oct", rule:{allow:"accept_review", severity:["low"], labels:["frontend"]}},
-          {id:"l2", eff:"ask", text:"Mark any fix <b>good to merge</b>", src:"Set by you · 24 Oct", rule:{ask:"test_result.goodToMerge"}},
-          {id:"l3", eff:"never", text:"Review work filed by your other agents", src:"Ziki independence rule", locked:true, rule:{never:["same_owner_review"]}}
-        ]}
+      scout: { name:"Scout", revoked:false, confirming:false, rules:[
+        {eff:"allow", text:"Bid on low and medium frontend issues"},
+        {eff:"ask", text:"Anything high severity or touching auth"},
+        {eff:"never", text:"Change the database"} ]},
+      lens: { name:"Lens", revoked:false, confirming:false, rules:[
+        {eff:"allow", text:"Review low-severity frontend fixes"},
+        {eff:"ask", text:"Approve anything for merge"} ]}
     },
     decisions: [
-      { id:"dec_7Q9", agent:"lens", issue:"#188", sev:"low", title:"Accept a review offer on #188, the docs typo fix?", facts:["Review · 300 pts if merged", "label <code>docs</code>"],
-        why:"Lens's mandate only covers <code>frontend</code> reviews.", plan:"Check the 3 changed lines against the style guide, rebuild the docs and confirm the link targets resolve.",
-        expires: now + 9*60e3 + 12e3,
-        opts:[
-          {id:"allow_kind", label:"Approve, and allow this kind from now on", note:"Adds “accept review offers on low issues labelled docs” to Lens's mandate.", rec:true,
-            clause:{eff:"allow", text:"Accept review offers on <b>low</b> issues labelled <code>docs</code>", rule:{allow:"accept_review", severity:["low"], labels:["docs"]}}},
-          {id:"once", label:"Approve just this once", note:"Lens accepts the review offer now. The mandate stays as it is."},
-          {id:"skip", label:"Skip it", note:"The offer goes to another reviewer."}
-        ], verb:"accepted the review offer on" },
-      { id:"dec_7Q2", agent:"scout", issue:"#104", sev:"high", title:"Bid on #104: race condition in event cursors?", facts:["1,200 pts if resolved", "est. 30 min", "label <code>backend</code>"],
-        why:"Your ASK rule applies: high or critical issues.", plan:"Add a per-tenant lock around cursor advance, then a regression test that runs two pollers against one cursor.",
-        expires: now + 24*60e3,
-        opts:[
-          {id:"allow_kind", label:"Approve, and allow this kind from now on", note:"Adds “high issues labelled backend” to Scout's mandate. Changes to auth/ still need you.", rec:true,
-            clause:{eff:"allow", text:"Bid on <b>high</b> issues labelled <code>backend</code> (not <code>auth/</code>)", rule:{allow:"bid", severity:["high"], labels:["backend"], exceptPaths:["auth/**"]}}},
-          {id:"once", label:"Approve just this once", note:"Scout bids now. The mandate stays as it is."},
-          {id:"skip", label:"Skip it", note:"Scout moves on and won't ask about #104 again."}
-        ], verb:"bid on" },
-      { id:"dec_7R1", agent:"scout", issue:"#212", sev:"medium", title:"Change a database migration to fix #212, the label filter?", facts:["450 pts if resolved", "touches <code>prisma/migrations</code>"],
-        why:"Your NEVER rule applies. Scope changes always come to you.", plan:"The fix needs a new index on <code>issue_labels(project_id, label)</code>. The alternative is a slower query with no schema change.",
-        expires: now + 3*3600e3 + 40*60e3, never:true,
-        opts:[
-          {id:"once", label:"Approve the migration for this issue", note:"Recorded as human approval on #212.", rec:true},
-          {id:"smaller", label:"Ask for the fix without a schema change", note:"Scout ships the slower query and opens a follow-up issue."},
-          {id:"skip", label:"Skip it", note:"Scout releases #212 for someone else."}
-        ], verb:"was approved to change the migration for" }
+      { id:"d1", agent:"lens", issue:"#188", sev:"low", title:"Review the docs typo fix on #188?", meta:"300 pts",
+        rule:"Review low-severity docs fixes", expires: now + 9*60e3 + 12e3 },
+      { id:"d2", agent:"scout", issue:"#104", sev:"high", title:"Bid on #104: race condition in event cursors?", meta:"1,200 pts · about 30 min",
+        rule:"Bid on high-severity backend issues", expires: now + 24*60e3 }
     ],
-    resolved: {},
+    done: {},
     activity: [
-      {t: now - 18*60e3, agent:"scout", html:"Bid on <b>#97</b>: tooltip clipped on the issue board", auth:[["c-allow","mandate · clause 1"]]},
-      {t: now - 52*60e3, agent:"lens", html:"Accepted a review offer on <b>#91</b>: sticky header overlap", auth:[["c-allow","mandate · clause 1"]]},
-      {t: now - 95*60e3, agent:"scout", html:"Filed <b>#203</b>: empty state shows on a loaded board", auth:[["c-allow","mandate · clause 2"]]},
-      {t: now - 3.2*3600e3, agent:"scout", html:"Asked about <b>#180</b>, a high-severity auth issue. You approved it once.", auth:[["c-dec","decision · dec_7N4"]]}
+      {agent:"scout", text:"Bid on #97", chip:["c-allow","Allowed"]},
+      {agent:"lens", text:"Reviewed #91", chip:["c-allow","Allowed"]},
+      {agent:"scout", text:"Bid on #180", chip:["c-you","You approved"]}
     ]
   };
 
-  // ---------- rendering ----------
-  const effLabel = {allow:"ALLOW", limit:"LIMIT", ask:"ASK", never:"NEVER"};
-  function fmt(ms){
-    if (ms <= 0) return "expired";
-    const s = Math.floor(ms/1000), h = Math.floor(s/3600), m = Math.floor(s%3600/60), sec = s%60;
-    return h ? `${h}h ${String(m).padStart(2,"0")}m` : `${m}:${String(sec).padStart(2,"0")}`;
-  }
-  function pending(){ return S.decisions.filter(d => !S.resolved[d.id]).sort((a,b) => a.expires - b.expires); }
+  const fmt = ms => { const s = Math.max(0, Math.floor(ms/1000)); return `${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`; };
+  const name = k => S.agents[k].name;
 
   function renderQueue(){
-    const q = $("#queue");
-    const open = pending();
-    const done = S.decisions.filter(d => S.resolved[d.id]);
-    q.innerHTML = open.map(cardHTML).join("") +
-      (open.length ? "" : `<div class="empty"><b>You're all caught up</b>Your agents are working inside their mandates. New questions will show up here.</div>`) +
-      done.map(doneHTML).join("");
-    const n = open.length;
-    $("#navcount").textContent = n; $("#navcount").classList.toggle("zero", !n); $("#s-wait").textContent = n;
-    const similar = open.filter(d => d.opts.some(o => o.id === "allow_kind"));
-    $("#bulk").innerHTML = similar.length > 1 ? `<div class="bulk">${similar.length} requests each come with a suggested rule. <button class="btn sm primary" data-bulk>Approve all and add ${similar.length} rules</button></div>` : "";
-    tick();
-  }
-  function cardHTML(d){
-    const a = S.agents[d.agent];
-    return `<article class="dc" data-id="${d.id}">
-      <div class="hd"><span class="av ${d.agent}">${a.init}</span><span class="who">${a.name} <span>· ${a.level} · wants to go beyond its mandate</span></span>
-        <span class="timer" data-exp="${d.expires}">${fmt(d.expires - Date.now())}</span></div>
-      <div class="bd">
+    const open = S.decisions.filter(d => !S.done[d.id]).sort((a,b) => a.expires - b.expires);
+    const closed = S.decisions.filter(d => S.done[d.id]);
+    $("#queue").innerHTML =
+      open.map(d => `<article class="card">
+        <div class="who"><span class="av ${d.agent}">${name(d.agent)[0]}</span><b>${name(d.agent)}</b> is asking
+          <span class="timer" data-exp="${d.expires}">Skips in ${fmt(d.expires - Date.now())}</span></div>
         <h3>${d.title}</h3>
-        <div class="facts"><span class="sev ${d.sev}">${d.sev}</span>${d.facts.map(f => `<span>${f}</span>`).join("<span>·</span>")}<span>·</span><a href="#" class="mono" style="color:var(--blue-strong)">ziki.dev/issues/${d.issue.slice(1)}</a></div>
-        <div class="why"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg><span>${d.why}</span></div>
-        <p class="plan"><b style="color:var(--ink)">Plan:</b> ${d.plan}</p>
-        <div class="opts">${d.opts.map((o,i) => `<button class="opt ${o.rec?"rec":""}" data-d="${d.id}" data-o="${o.id}">
-          <span class="k">${i+1}</span><span><b>${o.label}</b><small>${o.note}</small></span>${o.rec?'<span class="tag">Suggested</span>':""}</button>`).join("")}</div>
-        <div class="dflt">If you don't answer in time: <b>Skip</b>. A request never defaults to acting.</div>
-      </div></article>`;
-  }
-  function doneHTML(d){
-    const r = S.resolved[d.id], a = S.agents[d.agent];
-    const o = d.opts.find(x => x.id === r.choice);
-    const yes = r.choice !== "skip" && r.choice !== "smaller" && !r.expired;
-    return `<article class="dc done"><div class="bd"><div class="resolved">
-      <span class="mark ${yes?"y":"n"}">${yes?"✓":"–"}</span>
-      <span><b>${a.name} · ${d.issue}</b> · ${r.expired ? "Expired, so it was skipped by default" : esc(o.label)}</span>
-      ${r.expired ? "" : `<button class="undo" data-undo="${d.id}">Undo</button>`}</div></div></article>`;
+        <p class="meta"><span class="sev ${d.sev}">${d.sev}</span>${d.meta}</p>
+        <div class="opts">
+          <button class="btn primary" data-d="${d.id}" data-o="always">Allow from now on</button>
+          <button class="btn" data-d="${d.id}" data-o="once">Just this once</button>
+          <button class="btn" data-d="${d.id}" data-o="skip">Skip</button>
+        </div></article>`).join("") +
+      (open.length ? "" : `<div class="card empty"><b>All caught up</b>Your agents are working within what you've allowed.</div>`) +
+      closed.map(d => { const r = S.done[d.id], yes = r !== "skip" && r !== "expired";
+        const what = {always:"Allowed from now on", once:"Allowed once", skip:"Skipped", expired:"Skipped, no answer in time"}[r];
+        return `<div class="card done"><span class="tick ${yes?"":"n"}">${yes?"✓":"–"}</span><span><b>${d.issue}</b> · ${what}</span>${r==="expired"?"":`<button class="undo" data-undo="${d.id}">Undo</button>`}</div>`; }).join("");
+    $("#navcount").textContent = open.length; $("#navcount").hidden = !open.length;
   }
 
-  function renderTabs(){
-    $("#tabs").innerHTML = Object.entries(S.agents).map(([k,a]) =>
-      `<button class="tab ${S.agentTab===k?"on":""}" data-tab="${k}"><span class="av ${k}">${a.init}</span>${a.name}'s mandate</button>`).join("");
+  function renderRules(fresh){
+    const a = S.agents[S.tab];
+    $("#rules").className = "card" + (a.revoked ? " revoked" : "");
+    $("#rules").innerHTML = `<div class="tabs">${Object.entries(S.agents).map(([k,x]) =>
+        `<button class="tab ${S.tab===k?"on":""}" data-tab="${k}"><span class="av ${k}">${x.name[0]}</span>${x.name}</button>`).join("")}</div>
+      <ul class="rules">${a.rules.map((r,i) => `<li class="${r.eff==="never"?"never":""} ${fresh===i?"fresh":""}"><span class="chip c-${r.eff}">${r.eff.toUpperCase()}</span><span>${r.text}</span></li>`).join("")}</ul>
+      <div class="pfoot">${a.confirming
+        ? `<span>Turn off everything ${a.name} can do alone?</span><span style="display:flex;gap:6px"><button class="btn sm danger" id="yes">Revoke</button><button class="btn sm" id="no">Cancel</button></span>`
+        : a.revoked ? `<span>${a.name} now asks before everything.</span><button class="btn sm" id="restore">Restore</button>`
+        : `<span>Expires in 7 days</span><button class="btn sm danger" id="revoke">Revoke</button>`}</div>`;
   }
-  function renderMandate(fresh){
-    const k = S.agentTab, a = S.agents[k];
-    const head = `<div class="mhead"><div><h2>${a.name}</h2><p>${a.level} · acting for Adewale · <span class="status ${a.revoked?"off":""}"><i></i>${a.revoked?"Revoked":"Active · expires in "+({"2h":"2 hours","8h":"8 hours","24h":"24 hours","7d":"7 days"}[a.expiry])}</span></p></div>
-      <div class="view" role="tablist"><button class="${S.view==="owner"?"on":""}" data-view="owner">Your view</button><button class="${S.view==="agent"?"on":""}" data-view="agent">What ${a.name} sees</button></div></div>`;
-    if (S.view === "agent") {
-      $("#mandate").innerHTML = head + `<div class="mbody"><p class="agentnote">${a.name} reads this at the start of every session. Ziki refuses any write that falls outside it and sends you a decision card instead.</p><pre class="json">${hl(agentJSON(k))}</pre></div>`;
-      return;
-    }
-    const cl = a.clauses.map((c,i) => `<li class="cl ${c.eff==="never"?"never":""} ${fresh===c.id?"fresh":""}"><span class="chip c-${c.eff}">${effLabel[c.eff]}</span>
-        <span>${c.text}<span class="src">${c.src}</span></span>
-        ${c.locked ? '<span class="lock" title="Can\'t be removed">🔒</span>' : `<button class="x" data-rm="${c.id}" aria-label="Remove rule">×</button>`}</li>`).join("");
-    $("#mandate").innerHTML = head + `<div class="mbody ${a.revoked?"revoked":""}">
-      <ul class="clauses">${cl}</ul>
-      <div class="addrow">
-        <select id="ae" aria-label="Effect"><option value="allow">Allow</option><option value="ask">Ask</option><option value="never">Never</option></select>
-        <select id="aa" aria-label="Action"><option>Bid on issues</option><option>Accept offers</option><option>File issues</option><option>Accept review offers</option></select>
-        <select id="as" aria-label="Severity"><option>low</option><option>medium</option><option>high</option><option>any severity</option></select>
-        <button class="btn sm" id="add">Add rule</button>
-      </div>
-      <div class="settings">
-        <div class="set"><span>Expires after</span><div class="seg">${["2h","8h","24h","7d"].map(e => `<button class="${a.expiry===e?"on":""}" data-exp="${e}">${e}</button>`).join("")}</div></div>
-        <div class="set"><span>Quiet hours, 22:00–07:00 WAT</span><button class="switch" role="switch" aria-checked="${a.quiet}" id="quiet" aria-label="Quiet hours"></button></div>
-      </div>
-      <div class="locked"><b>Always needs you:</b> merges, scope changes, human-approval requests, level changes and key rotation. Only you can edit this mandate. Agents can suggest rules, never add them.</div>
-      <div class="mfoot">${a.confirming
-        ? `<div class="confirm">Revoke all of ${a.name}'s permissions now? It will have to ask you before every action. <button class="btn sm danger" id="revokeyes">Revoke</button><button class="btn sm" id="revokeno">Cancel</button></div>`
-        : a.revoked ? `<span style="font-size:12.5px;color:var(--muted)">${a.name} now asks before every action.</span><button class="btn sm primary" id="restore">Restore mandate</button>`
-        : `<span style="font-size:12.5px;color:var(--muted)">Changes apply to ${a.name}'s next request.</span><button class="btn sm danger" id="revoke">Revoke mandate</button>`}</div>
-    </div>`;
-  }
-  function agentJSON(k){
-    const a = S.agents[k];
-    return JSON.stringify({ agent:a.name.toLowerCase(), level:a.level, owner:"adewale", status:a.revoked?"revoked":"active",
-      expiresIn:a.expiry, quietHours:a.quiet?"22:00-07:00 Africa/Lagos":null,
-      clauses: a.revoked ? a.clauses.filter(c=>c.eff==="never").map(c=>c.rule) : a.clauses.map(c => c.rule),
-      outsideMandate:"403 needs_owner + decision card" }, null, 2);
-  }
-  function hl(json){
-    return esc(json).replace(/(&quot;[^&]*?&quot;)(\s*:)?/g, (m, s, c) => c ? `<span class="k">${s}</span>${c}` : `<span class="s">${s}</span>`).replace(/\b(\d+)\b/g, '<span class="n">$1</span>');
-  }
-  function renderAct(freshFirst){
-    $("#act").innerHTML = S.activity.slice().sort((a,b)=>b.t-a.t).map((r,i) => `<li class="${freshFirst&&i===0?"fresh":""}"><time>${hhmm(r.t)}</time><div>
-      <span class="av ${r.agent}" style="display:inline-grid;width:20px;height:20px;font-size:10px;border-radius:6px;vertical-align:-4px;margin-right:6px">${S.agents[r.agent].init}</span>${r.html}
-      <div class="auth">${r.auth.map(([c,t]) => `<span class="chip ${c}">${t}</span>`).join("")}</div></div></li>`).join("");
-    $("#s-auto").textContent = S.activity.filter(r => r.auth.some(x => x[1].startsWith("mandate"))).length + 9;
-  }
-  function renderAll(fresh){ renderQueue(); renderTabs(); renderMandate(fresh); renderAct(); }
 
-  // ---------- actions ----------
-  let lastUndo = null;
-  function decide(id, choice, quiet){
-    const d = S.decisions.find(x => x.id === id), a = S.agents[d.agent];
-    const o = d.opts.find(x => x.id === choice);
-    const snap = JSON.stringify({resolved:S.resolved, agents:S.agents, activity:S.activity});
-    S.resolved[id] = {choice};
-    let fresh = null;
-    if (choice === "allow_kind") {
-      const c = Object.assign({id:"n"+Math.random().toString(36).slice(2,7), src:`Added from ${d.issue} · just now`}, o.clause);
-      a.clauses.splice(a.clauses.findIndex(x => x.eff==="ask"||x.eff==="never"), 0, c);
-      fresh = c.id;
-      S.activity.push({t:Date.now(), agent:d.agent, html:`${a.name === "Lens" ? "Accepted the review offer on" : "Bid on"} <b>${d.issue}</b>`, auth:[["c-dec","decision · "+id],["c-allow","new rule added"]]});
-    } else if (choice === "skip") {
-      S.activity.push({t:Date.now(), agent:d.agent, html:`Skipped <b>${d.issue}</b> because you said no`, auth:[["c-dec","decision · "+id]]});
-    } else if (choice === "smaller") {
-      S.activity.push({t:Date.now(), agent:d.agent, html:`Is fixing <b>${d.issue}</b> without a schema change, and opened a follow-up issue`, auth:[["c-dec","decision · "+id]]});
-    } else {
-      S.activity.push({t:Date.now(), agent:d.agent, html:`${d.verb[0].toUpperCase()+d.verb.slice(1)} <b>${d.issue}</b>`, auth:[["c-dec", (d.never?"human approval · ":"decision · ")+id]]});
-    }
-    if (fresh) S.agentTab = d.agent;
-    renderQueue(); renderTabs(); renderMandate(fresh); renderAct(true);
-    if (!quiet) { lastUndo = snap; toast(choice==="allow_kind" ? `${a.name} can now do this on its own. The new rule is in its mandate.` : choice==="skip" ? `${a.name} will skip ${d.issue}.` : `Recorded on ${d.issue} as your decision.`); }
-    return snap;
+  function renderAct(fresh){
+    $("#act").innerHTML = S.activity.map((r,i) => `<li class="${fresh&&i===0?"fresh":""}"><span class="av ${r.agent}">${name(r.agent)[0]}</span><span>${r.text}</span><span class="chip ${r.chip[0]}">${r.chip[1]}</span></li>`).join("");
   }
-  function restore(snap){ const s = JSON.parse(snap); S.resolved = s.resolved; S.agents = s.agents; S.activity = s.activity; renderAll(); }
 
   let tt;
-  function toast(msg, undo = true){
-    $("#toastmsg").textContent = msg; $("#toastundo").hidden = !undo;
-    $("#toast").classList.add("show"); clearTimeout(tt); tt = setTimeout(() => $("#toast").classList.remove("show"), 4500);
+  const toast = m => { const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("show"), 3500); };
+
+  function decide(id, o){
+    const d = S.decisions.find(x => x.id === id), a = S.agents[d.agent];
+    S.done[id] = o;
+    let fresh;
+    if (o === "always") { const i = a.rules.findIndex(r => r.eff !== "allow"); a.rules.splice(i, 0, {eff:"allow", text:d.rule, from:id}); fresh = i; S.tab = d.agent; }
+    const verb = d.agent === "lens" ? "Reviewed" : "Bid on";
+    S.activity.unshift(o === "skip" ? {agent:d.agent, text:`Skipped ${d.issue}`, chip:["c-you","You said no"], from:id}
+      : {agent:d.agent, text:`${verb} ${d.issue}`, chip:["c-you","You approved"], from:id});
+    renderQueue(); renderRules(fresh); renderAct(true);
+    toast(o === "always" ? `${a.name} can do this on its own now.` : o === "skip" ? `${a.name} will skip ${d.issue}.` : `${a.name} can go ahead, just this once.`);
   }
-  $("#toastundo").addEventListener("click", () => { if (lastUndo) { restore(lastUndo); lastUndo = null; } $("#toast").classList.remove("show"); });
 
   document.addEventListener("click", e => {
-    const t = e.target.closest("button"); if (!t) return;
-    const ag = S.agents[S.agentTab];
-    if (t.dataset.o) decide(t.dataset.d, t.dataset.o);
-    else if (t.dataset.bulk !== undefined) {
-      const snap = JSON.stringify({resolved:S.resolved, agents:S.agents, activity:S.activity});
-      pending().filter(d => d.opts.some(o => o.id==="allow_kind")).forEach(d => decide(d.id, "allow_kind", true));
-      lastUndo = snap; toast("Approved, and the rules were added to each agent's mandate.");
+    const b = e.target.closest("button"); if (!b) return;
+    const a = S.agents[S.tab];
+    if (b.dataset.o) decide(b.dataset.d, b.dataset.o);
+    else if (b.dataset.undo) {
+      const d = S.decisions.find(x => x.id === b.dataset.undo); delete S.done[d.id];
+      Object.values(S.agents).forEach(x => x.rules = x.rules.filter(r => r.from !== d.id));
+      S.activity = S.activity.filter(r => r.from !== d.id);
+      renderQueue(); renderRules(); renderAct();
     }
-    else if (t.dataset.undo) {
-      const d = S.decisions.find(x => x.id === t.dataset.undo);
-      delete S.resolved[d.id];
-      S.activity = S.activity.filter(r => !r.auth.some(x => x[1].endsWith(d.id)));
-      const a = S.agents[d.agent]; a.clauses = a.clauses.filter(c => !c.src.startsWith("Added from "+d.issue));
-      renderAll(); toast(`Reopened ${d.issue}. ${a.name} hasn't acted yet.`, false);
-    }
-    else if (t.dataset.tab) { S.agentTab = t.dataset.tab; renderTabs(); renderMandate(); }
-    else if (t.dataset.view) { S.view = t.dataset.view; renderMandate(); }
-    else if (t.dataset.rm) { ag.clauses = ag.clauses.filter(c => c.id !== t.dataset.rm); renderMandate(); toast(`Rule removed. ${ag.name} will ask you for this from now on.`, false); }
-    else if (t.dataset.exp && t.closest(".seg")) { ag.expiry = t.dataset.exp; renderMandate(); }
-    else if (t.id === "quiet") { ag.quiet = !ag.quiet; renderMandate(); }
-    else if (t.id === "revoke") { ag.confirming = true; renderMandate(); }
-    else if (t.id === "revokeno") { ag.confirming = false; renderMandate(); }
-    else if (t.id === "revokeyes") { ag.confirming = false; ag.revoked = true; renderMandate(); toast(`${ag.name}'s mandate is revoked. It will ask before every action.`, false); }
-    else if (t.id === "restore") { ag.revoked = false; renderMandate(); }
-    else if (t.id === "add") {
-      const eff = $("#ae").value, act = $("#aa").value, sev = $("#as").value;
-      const c = {id:"u"+Math.random().toString(36).slice(2,7), eff, text:`${act} · <b>${sev}</b>`, src:"Set by you · just now", rule:{[eff]:act.toLowerCase().replace(/ /g,"_"), severity:[sev]}};
-      ag.clauses.splice(eff==="allow" ? ag.clauses.findIndex(x => x.eff!=="allow") : ag.clauses.findIndex(x => x.eff==="never"), 0, c);
-      renderMandate(c.id);
-    }
-    else if (t.id === "theme") {
+    else if (b.dataset.tab) { S.tab = b.dataset.tab; renderRules(); }
+    else if (b.id === "revoke") { a.confirming = true; renderRules(); }
+    else if (b.id === "no") { a.confirming = false; renderRules(); }
+    else if (b.id === "yes") { a.confirming = false; a.revoked = true; renderRules(); }
+    else if (b.id === "restore") { a.revoked = false; renderRules(); }
+    else if (b.id === "theme") {
       const r = document.documentElement;
       const cur = r.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
       const nx = cur === "dark" ? "light" : "dark"; r.setAttribute("data-theme", nx);
@@ -475,24 +257,20 @@ pre.json{margin:0; font:12.5px/1.6 var(--mono); background:var(--code); border-r
     }
   });
 
-  // countdowns; an expired card resolves to its safe default
-  function tick(){
+  setInterval(() => {
     document.querySelectorAll(".timer[data-exp]").forEach(el => {
       const left = +el.dataset.exp - Date.now();
-      el.textContent = left > 0 ? "expires in " + fmt(left) : "expired";
-      el.classList.toggle("hot", left < 10*60e3);
+      el.textContent = "Skips in " + fmt(left);
       if (left <= 0) {
-        const id = el.closest(".dc").dataset.id, d = S.decisions.find(x => x.id === id);
-        if (!S.resolved[id]) {
-          S.resolved[id] = {choice:"skip", expired:true};
-          S.activity.push({t:Date.now(), agent:d.agent, html:`Skipped <b>${d.issue}</b> because there was no answer in time`, auth:[["c-ask","default · skip"]]});
-          renderQueue(); renderAct(true);
-        }
+        const id = el.closest(".card").querySelector("[data-d]").dataset.d, d = S.decisions.find(x => x.id === id);
+        S.done[id] = "expired";
+        S.activity.unshift({agent:d.agent, text:`Skipped ${d.issue}`, chip:["c-ask","No answer"], from:id});
+        renderQueue(); renderAct(true);
       }
     });
-  }
-  setInterval(tick, 1000);
-  renderAll();
+  }, 1000);
+
+  renderQueue(); renderRules(); renderAct();
 })();
 </script>
 </body>
