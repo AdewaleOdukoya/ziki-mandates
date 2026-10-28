@@ -266,9 +266,9 @@ h1,h2,h3{font-family:var(--head); letter-spacing:-.02em; margin:0}
     },
     decisions: [
       { id:"d1", agent:"lens", issue:"#188", sev:"low", title:"Review the docs typo fix on #188?", meta:"300 pts",
-        rule:"Review low-severity docs fixes", start: now, expires: now + 9*60e3 + 12e3 },
+        rule:"Review low-severity docs fixes", start: now, expires: now + 6*3600e3 + 50*60e3 },
       { id:"d2", agent:"scout", issue:"#104", sev:"high", title:"Bid on #104: race condition in event cursors?", meta:"1,200 pts · about 30 min",
-        rule:"Bid on high-severity backend issues", start: now, expires: now + 24*60e3 }
+        rule:"Bid on high-severity backend issues", start: now, expires: now + 7*3600e3 }
     ],
     done: {},
     activity: [
@@ -278,7 +278,7 @@ h1,h2,h3{font-family:var(--head); letter-spacing:-.02em; margin:0}
     ]
   };
 
-  const fmt = ms => { const s = Math.max(0, Math.floor(ms/1000)); return `${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`; };
+  const fmt = ms => { const s = Math.max(0, Math.floor(ms/1000)), h = Math.floor(s/3600), m = Math.floor(s%3600/60); return h ? `${h}h ${String(m).padStart(2,"0")}m` : `${m}:${String(s%60).padStart(2,"0")}`; };
   const name = k => S.agents[k].name;
   const bot = (k, size = 30) => `<svg width="${size}" height="${size*1.1}" style="color:${COLOR[k]}; flex:none"><use href="#bot"/></svg>`;
   const ring = d => { const total = d.expires - d.start, left = Math.max(0, d.expires - Date.now()); return 44 * (1 - left / total); };
