@@ -7,7 +7,7 @@
 <link rel="icon" href="https://ziki.dev/icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600&family=Geist+Mono:wght@500;600&display=swap">
-<script>try{var t=localStorage.getItem("ziki-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<script>document.documentElement.setAttribute("data-theme","light")</script>
 <style>
 :root{
   --bg:#f5f7fc; --card:#fff; --ink:#111f3d; --muted:#6b7893; --line:#dbe7fd; --line-2:#e8eef9;
@@ -389,8 +389,7 @@ h1,h2,h3{font-family:var(--head); letter-spacing:-.02em; margin:0}
     else if (b.id === "theme") {
       const r = document.documentElement;
       const cur = r.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-      const nx = cur === "dark" ? "light" : "dark"; r.setAttribute("data-theme", nx);
-      try { localStorage.setItem("ziki-theme", nx); } catch (e) {}
+      r.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
     }
   });
 
